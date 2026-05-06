@@ -39,24 +39,45 @@ function StatCell({
 }) {
   const count = useCountUp(stat.value, visible);
   const formatted = count >= 1000 ? count.toLocaleString() : String(count);
+
+  // Border logic: 2x2 on mobile / 1x4 on desktop
+  // Top borders: idx 0,1 mobile / all on desktop
+  // Left borders: idx 1,3 mobile / idx 1,2,3 desktop
   return (
     <div
-      className={`relative py-10 lg:py-12 ${
-        idx > 0 ? 'border-t lg:border-t-0 lg:border-l border-border lg:pl-10' : ''
-      }`}
+      className={`relative px-5 sm:px-6 lg:px-8 py-10 lg:py-14 group
+        border-t border-border
+        ${idx % 2 === 1 ? 'border-l' : ''}
+        ${idx >= 2 ? '' : ''}
+        lg:border-t lg:border-border
+        ${idx > 0 ? 'lg:border-l' : ''}
+      `}
     >
-      <div className="text-[11px] font-en text-subtle tracking-[0.2em] mb-6">
-        0{idx + 1}
+      <div className="flex items-baseline justify-between mb-4 lg:mb-6">
+        <span className="text-[10px] font-en text-subtle tracking-[0.22em]">
+          0{idx + 1}
+        </span>
+        <span className="text-[10px] uppercase tracking-[0.22em] text-subtle">
+          {stat.kr}
+        </span>
       </div>
-      <div className="font-en font-medium tracking-tightest text-6xl lg:text-7xl text-ink tabular-nums leading-none">
+
+      {/* The number — serif italic, very large */}
+      <div className="font-serif-display italic text-ink leading-[0.85] tabular-nums tracking-tight text-[clamp(3.5rem,11vw,8.5rem)]">
         {formatted}
-        <span className="text-accent/80">{stat.suffix}</span>
+        <span className="text-accent/85 not-italic font-en font-light text-[0.5em] align-top ml-1">
+          {stat.suffix}
+        </span>
       </div>
-      <div className="mt-6 flex items-baseline justify-between">
-        <span className="text-[13px] font-en font-medium text-ink/85">
+
+      <div className="mt-5 lg:mt-7 flex items-baseline justify-between border-t border-border/60 pt-4">
+        <span className="text-[13px] lg:text-sm font-en font-medium text-ink/85 tracking-tight">
           {stat.label}
         </span>
-        <span className="text-[11px] text-muted">{stat.kr}</span>
+        <span
+          className="h-1 w-1 rounded-full bg-accent/70 transition-all duration-500 group-hover:w-6 group-hover:bg-accent"
+          aria-hidden
+        />
       </div>
     </div>
   );
@@ -77,7 +98,7 @@ export default function Stats() {
           }
         });
       },
-      { threshold: 0.25 },
+      { threshold: 0.2 },
     );
     observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -88,8 +109,8 @@ export default function Stats() {
       ref={sectionRef}
       className="relative py-28 lg:py-40 section-divider"
     >
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <div className="mb-16 lg:mb-20 grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mb-14 lg:mb-20 grid grid-cols-1 lg:grid-cols-12 gap-6">
           <div className="lg:col-span-8">
             <div className="text-[10px] uppercase tracking-[0.28em] text-subtle mb-4">
               Numbers — 03
@@ -108,8 +129,8 @@ export default function Stats() {
           </div>
         </div>
 
-        {/* Editorial inline grid, no cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-border">
+        {/* 2x2 on mobile, single row on desktop — all 4 visible at once */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 -mx-px">
           {STATS.map((stat, idx) => (
             <StatCell key={stat.label} stat={stat} idx={idx} visible={visible} />
           ))}
