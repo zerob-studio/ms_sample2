@@ -8,7 +8,7 @@ export default function Footer() {
             <h3 className="font-en font-medium text-6xl lg:text-8xl text-ink tracking-tightest leading-none">
               musai<span className="text-muted/60">studio</span>
             </h3>
-            <span className="font-en text-base text-muted italic">
+            <span className="font-serif-display italic text-xl text-muted">
               Boost Your Play.
             </span>
           </div>

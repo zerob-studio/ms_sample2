@@ -96,7 +96,9 @@ export default function Stats() {
             </div>
             <h2 className="font-en font-medium text-4xl lg:text-6xl tracking-tightest text-ink leading-[1.02]">
               Three decades,{' '}
-              <span className="text-muted">one discipline.</span>
+              <span className="font-serif-display italic font-normal text-muted">
+                one discipline.
+              </span>
             </h2>
           </div>
           <div className="lg:col-span-4 lg:pt-3 lg:self-end">

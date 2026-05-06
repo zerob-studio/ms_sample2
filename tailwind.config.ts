@@ -25,6 +25,7 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],
         kr: ['var(--font-noto-sans-kr)', 'sans-serif'],
+        serif: ['var(--font-instrument-serif)', 'serif'],
       },
       letterSpacing: {
         tightest: '-0.045em',

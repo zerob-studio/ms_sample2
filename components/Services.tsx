@@ -44,7 +44,9 @@ export default function Services() {
             </div>
             <h2 className="font-en font-medium text-4xl lg:text-6xl tracking-tightest text-ink leading-[1.02]">
               Three pillars,{' '}
-              <span className="text-muted">one pipeline.</span>
+              <span className="font-serif-display italic font-normal text-muted">
+                one pipeline.
+              </span>
             </h2>
           </div>
           <div className="lg:col-span-4 lg:pt-3 lg:self-end">

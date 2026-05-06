@@ -30,7 +30,9 @@ export default function About() {
           </div>
           <h2 className="font-en font-medium text-4xl lg:text-6xl tracking-tightest text-ink leading-[1.02] max-w-4xl">
             A studio for global storytellers,{' '}
-            <span className="text-muted">since 1995.</span>
+            <span className="font-serif-display italic font-normal text-muted">
+              since 1995.
+            </span>
           </h2>
         </div>
 
@@ -70,7 +72,7 @@ export default function About() {
 
             {/* Pull quote — minimal */}
             <figure className="mt-16 pl-6 border-l border-accent/40">
-              <blockquote className="font-en text-xl lg:text-2xl text-ink/95 leading-snug tracking-tight font-light italic">
+              <blockquote className="font-serif-display text-2xl lg:text-3xl text-ink/95 leading-snug italic font-normal">
                 "We don't just dub. We translate emotion across cultures —
                 that's the bar we hold for every project that ships globally."
               </blockquote>

@@ -37,7 +37,9 @@ export default function Studios() {
             </div>
             <h2 className="font-en font-medium text-4xl lg:text-6xl tracking-tightest text-ink leading-[1.02]">
               Two cities.{' '}
-              <span className="text-muted">One studio.</span>
+              <span className="font-serif-display italic font-normal text-muted">
+                One studio.
+              </span>
             </h2>
           </div>
           <div className="lg:col-span-4 lg:pt-3 lg:self-end">

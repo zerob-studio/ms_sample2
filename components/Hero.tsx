@@ -46,13 +46,16 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Headline — bigger, tighter, more confident */}
-        <h1 className="text-center font-en font-medium tracking-tightest text-[clamp(2.75rem,9vw,7.75rem)] leading-[0.95] text-ink">
-          <span className="block animate-fade-up" style={{ animationDelay: '0.05s' }}>
+        {/* Headline — sans + serif italic mix for editorial feel */}
+        <h1 className="text-center tracking-tightest text-[clamp(2.75rem,9vw,7.75rem)] leading-[0.95]">
+          <span
+            className="block font-en font-medium text-ink animate-fade-up"
+            style={{ animationDelay: '0.05s' }}
+          >
             Sound that moves
           </span>
           <span
-            className="block animate-fade-up mt-3 italic font-light"
+            className="block animate-fade-up mt-2 font-serif-display italic font-normal"
             style={{ animationDelay: '0.15s' }}
           >
             <span className="gradient-text">{ROTATING_WORDS[wordIdx]}</span>

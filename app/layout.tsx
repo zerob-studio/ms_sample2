@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Noto_Sans_KR } from 'next/font/google';
+import { Inter, Noto_Sans_KR, Instrument_Serif } from 'next/font/google';
 import './globals.css';
 
 const inter = Inter({
@@ -15,6 +15,14 @@ const notoSansKr = Noto_Sans_KR({
   variable: '--font-noto-sans-kr',
 });
 
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: ['400'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-instrument-serif',
+});
+
 export const metadata: Metadata = {
   title: 'MUSAI Studio — Sound · Localization · Entertainment',
   description:
@@ -27,7 +35,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko" className={`${inter.variable} ${notoSansKr.variable}`}>
+    <html
+      lang="ko"
+      className={`${inter.variable} ${notoSansKr.variable} ${instrumentSerif.variable}`}
+    >
       <body className="bg-bg text-ink">{children}</body>
     </html>
   );

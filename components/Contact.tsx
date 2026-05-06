@@ -28,7 +28,9 @@ export default function Contact() {
             <h2 className="font-en font-medium text-4xl lg:text-6xl tracking-tightest text-ink leading-[1.02]">
               Let's build
               <br />
-              <span className="text-muted">something great.</span>
+              <span className="font-serif-display italic font-normal text-muted">
+                something great.
+              </span>
             </h2>
             <p className="mt-6 text-muted leading-relaxed max-w-md text-sm">
               한 줄이라도 좋습니다. 작품의 결, 일정과 규모를 알려주시면 24시간 이내 회신드립니다.
