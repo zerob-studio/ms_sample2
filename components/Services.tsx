@@ -2,54 +2,59 @@ const SERVICES = [
   {
     no: '01',
     badge: 'Sound',
-    title: 'Sound Design',
-    krTitle: '사운드 디자인',
+    title: 'SOUND',
+    krTitle: '사운드',
+    tagline: 'Voiceover · audio production with PM-led care.',
     description:
-      '오리지널 스코어부터 사운드 디자인, 믹싱·마스터링까지. 작품의 정서를 결정짓는 모든 청각적 순간을 함께 설계합니다.',
-    bullets: ['Original Score', 'Sound Design', 'Mixing & Mastering', 'Voice Recording'],
+      '보이스오버 레코딩과 디렉션, 캐스팅, 사전·후반 오디오 작업까지. 전담 PM이 톤앤매너를 끝까지 책임지는 협업 방식입니다.',
+    bullets: ['Voice Recording', 'Voice Direction', 'Casting', 'Pre · Post Audio'],
   },
   {
     no: '02',
     badge: 'L10N',
-    title: 'Localization',
+    title: 'L10N',
     krTitle: '로컬라이제이션',
+    tagline: 'Translate emotion, not just words.',
     description:
-      '30개 언어, 1,000명의 보이스 풀. 게임과 콘텐츠를 현지 사용자의 감각에 정확히 맞춥니다.',
-    bullets: ['Translation', 'Voice Casting', 'Dubbing & ADR', 'QA & LQA'],
+      '번역과 어댑테이션, 포스트에디팅, LQA. 30개 이상의 언어를 가장 정확한 문화적 결로 옮깁니다.',
+    bullets: ['Translation', 'Adaptation', 'Post-Editing', 'LQA'],
   },
   {
     no: '03',
-    badge: 'IP',
-    title: 'Entertainment',
+    badge: 'ECHO',
+    title: 'ECHO',
     krTitle: '엔터테인먼트',
+    tagline: 'Talents who find their global stage.',
     description:
-      '아티스트와 IP, 그리고 라이브 프로덕션. 사운드의 경계를 넘어 콘텐츠 비즈니스로 확장합니다.',
-    bullets: ['IP Development', 'Artist Management', 'Live Production', 'Brand Collab'],
+      '아티스트 매니지먼트, 전문 트레이닝, 오디션과 글로벌 마켓 진출까지. 사운드의 경계를 넘어 사람과 IP를 잇습니다.',
+    bullets: [
+      'Artist Management',
+      'Pro Training',
+      'Casting',
+      'Global Expansion',
+    ],
   },
 ];
 
 function ServiceIcon({ no }: { no: string }) {
   if (no === '01') {
-    // sound waves
     return (
-      <svg viewBox="0 0 28 28" className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-        <path d="M3 14h2M9 8v12M14 4v20M19 8v12M25 14h-2" />
+      <svg viewBox="0 0 32 32" className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
+        <path d="M3 16h2M9 9v14M16 4v24M23 9v14M27 16h2" />
       </svg>
     );
   }
   if (no === '02') {
-    // globe / language
     return (
-      <svg viewBox="0 0 28 28" className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-        <circle cx="14" cy="14" r="10" />
-        <path d="M4 14h20M14 4c3 3 5 6.5 5 10s-2 7-5 10c-3-3-5-6.5-5-10s2-7 5-10z" />
+      <svg viewBox="0 0 32 32" className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
+        <circle cx="16" cy="16" r="12" />
+        <path d="M4 16h24M16 4c3 3.5 5 7.5 5 12s-2 8.5-5 12c-3-3.5-5-7.5-5-12s2-8.5 5-12z" />
       </svg>
     );
   }
-  // sparkle / star
   return (
-    <svg viewBox="0 0 28 28" className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14 3l2.5 7.5L24 13l-7.5 2.5L14 23l-2.5-7.5L4 13l7.5-2.5z" />
+    <svg viewBox="0 0 32 32" className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 3l3 9 9 1-7 6.5L23 29l-7-5-7 5 2-9.5L4 13l9-1z" />
     </svg>
   );
 }
@@ -58,29 +63,31 @@ export default function Services() {
   return (
     <section id="services" className="relative py-24 lg:py-32 border-t border-border">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div className="max-w-xl">
+        <div className="mb-14 grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className="lg:col-span-7">
             <span className="text-xs uppercase tracking-[0.2em] text-accent">
-              Services
+              Services — 02
             </span>
-            <h2 className="mt-3 font-en font-semibold text-4xl lg:text-5xl tracking-[-0.03em] text-ink">
-              What we do, end to end.
+            <h2 className="mt-3 font-en font-semibold text-4xl lg:text-5xl tracking-[-0.03em] text-ink leading-[1.05]">
+              Three pillars, one pipeline.
             </h2>
           </div>
-          <p className="text-muted max-w-md">
-            세 영역의 전문성이 하나의 파이프라인으로 연결되어, 의뢰부터 출시까지 끊김 없이 작업합니다.
-          </p>
+          <div className="lg:col-span-5 lg:pt-3">
+            <p className="text-muted leading-relaxed">
+              Sound · L10N · ECHO. 세 영역의 전문성이 단일 파이프라인으로
+              연결되어, 의뢰부터 글로벌 출시까지 끊김 없이 동행합니다.
+            </p>
+          </div>
         </div>
 
-        {/* Horizontal cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {SERVICES.map((service) => (
             <article
               key={service.no}
               className="group relative rounded-2xl border border-border bg-surface/70 p-7 lg:p-8 hover:border-accent/40 hover:bg-surface transition-all duration-500 overflow-hidden"
             >
-              {/* Hover glow */}
-              <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-accent/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              {/* hover glow */}
+              <div className="absolute -top-12 -right-12 w-44 h-44 rounded-full bg-accent/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
               <div className="relative">
                 <div className="flex items-center justify-between mb-7">
@@ -99,16 +106,17 @@ export default function Services() {
                 </h3>
                 <p className="mt-1 text-sm text-accent/90">{service.krTitle}</p>
 
-                <p className="mt-5 text-muted leading-relaxed">
+                <p className="mt-5 font-en text-base text-ink/85 leading-snug tracking-tight">
+                  {service.tagline}
+                </p>
+
+                <p className="mt-3 text-sm text-muted leading-relaxed">
                   {service.description}
                 </p>
 
-                <ul className="mt-8 grid grid-cols-2 gap-2.5">
+                <ul className="mt-7 grid grid-cols-2 gap-2.5">
                   {service.bullets.map((b) => (
-                    <li
-                      key={b}
-                      className="flex items-center gap-2 text-sm text-ink/80"
-                    >
+                    <li key={b} className="flex items-center gap-2 text-sm text-ink/80">
                       <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                       {b}
                     </li>

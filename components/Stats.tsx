@@ -32,10 +32,7 @@ function StatCard({ stat, idx, visible }: { stat: (typeof STATS)[number]; idx: n
   const count = useCountUp(stat.value, visible);
   const formatted = count >= 1000 ? count.toLocaleString() : String(count);
   return (
-    <div
-      className="group relative rounded-xl border border-border bg-surface/60 backdrop-blur p-7 hover:border-accent/40 hover:bg-surface transition-all duration-500"
-      style={{ transitionDelay: `${idx * 50}ms` }}
-    >
+    <div className="group relative rounded-xl border border-border bg-surface/60 backdrop-blur p-7 hover:border-accent/40 hover:bg-surface transition-all duration-500">
       <div className="flex items-center justify-between mb-6">
         <span className="text-xs text-muted font-en">0{idx + 1}</span>
         <span className="h-1.5 w-1.5 rounded-full bg-accent group-hover:scale-150 transition-transform" />
@@ -74,18 +71,22 @@ export default function Stats() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="about" className="relative py-24 lg:py-32">
+    <section ref={sectionRef} className="relative py-24 lg:py-32 border-t border-border">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mb-14 max-w-2xl">
-          <span className="text-xs uppercase tracking-[0.2em] text-accent">
-            Numbers
-          </span>
-          <h2 className="mt-3 font-en font-semibold text-4xl lg:text-5xl tracking-[-0.03em] text-ink">
-            Three decades, one <span className="gradient-text">discipline</span>.
-          </h2>
-          <p className="mt-4 text-muted">
-            우리가 쌓아온 시간은 결국 작품의 결로 돌아갑니다.
-          </p>
+        <div className="mb-12 grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className="lg:col-span-7">
+            <span className="text-xs uppercase tracking-[0.2em] text-accent">
+              Numbers — 03
+            </span>
+            <h2 className="mt-3 font-en font-semibold text-4xl lg:text-5xl tracking-[-0.03em] text-ink leading-[1.05]">
+              Three decades, one <span className="gradient-text">discipline</span>.
+            </h2>
+          </div>
+          <div className="lg:col-span-5 lg:pt-3">
+            <p className="text-muted">
+              우리가 쌓아온 시간은 결국 작품의 결로 돌아갑니다. 숫자는 단지 결과의 한 면입니다.
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">

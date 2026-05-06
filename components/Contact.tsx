@@ -7,7 +7,6 @@ export default function Contact() {
 
   return (
     <section id="contact" className="relative py-24 lg:py-32 border-t border-border overflow-hidden">
-      {/* Bottom glow */}
       <div
         className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[900px] h-[400px] pointer-events-none"
         style={{
@@ -21,39 +20,46 @@ export default function Contact() {
           {/* Left: pitch */}
           <div className="lg:col-span-5">
             <span className="text-xs uppercase tracking-[0.2em] text-accent">
-              Get in touch
+              Get in touch — 07
             </span>
             <h2 className="mt-3 font-en font-semibold text-4xl lg:text-5xl tracking-[-0.03em] text-ink leading-[1.05]">
               Let's build<br />
               <span className="gradient-text">something great</span>.
             </h2>
             <p className="mt-5 text-muted leading-relaxed max-w-md">
-              한 줄이라도 좋습니다. 프로젝트의 결과 톤, 일정과 규모를 알려주시면 24시간 내 회신드립니다.
+              한 줄이라도 좋습니다. 작품의 결, 일정과 규모를 알려주시면 24시간 이내 회신드립니다.
             </p>
 
-            <div className="mt-10 space-y-5 text-sm">
-              <a href="mailto:hello@musai.studio" className="flex items-center justify-between rounded-lg border border-border bg-surface/60 px-5 py-4 hover:border-accent/40 hover:bg-surface transition-colors">
+            <div className="mt-10 space-y-4 text-sm">
+              <a href="mailto:contact@musaistudio.com" className="flex items-center justify-between rounded-lg border border-border bg-surface/60 px-5 py-4 hover:border-accent/40 hover:bg-surface transition-colors">
                 <div>
                   <div className="text-xs uppercase tracking-wider text-muted">
-                    Email
+                    General Email
                   </div>
-                  <div className="font-en text-ink mt-0.5">hello@musai.studio</div>
+                  <div className="font-en text-ink mt-0.5">
+                    contact@musaistudio.com
+                  </div>
                 </div>
                 <span className="text-accent">↗</span>
               </a>
               <div className="rounded-lg border border-border bg-surface/60 px-5 py-4">
                 <div className="text-xs uppercase tracking-wider text-muted">
-                  Studio
+                  Seoul HQ
                 </div>
                 <div className="text-ink mt-0.5">
-                  서울특별시 강남구 도산대로 327, 5F
+                  166 Donggwang-ro, Seocho, Seoul
+                </div>
+                <div className="font-en text-muted mt-1 text-xs">
+                  +82 2 529 1488 (KR) · +82 10 3800 8638 (EN)
                 </div>
               </div>
               <div className="rounded-lg border border-border bg-surface/60 px-5 py-4">
                 <div className="text-xs uppercase tracking-wider text-muted">
-                  Phone
+                  Berlin
                 </div>
-                <div className="font-en text-ink mt-0.5">+82 (0)2 1234 5678</div>
+                <div className="text-ink mt-0.5">
+                  Holsteinische Str. 1, 12163 Berlin
+                </div>
               </div>
             </div>
           </div>
@@ -72,10 +78,20 @@ export default function Contact() {
                   <input
                     type="text"
                     required
-                    placeholder="홍길동"
+                    placeholder="Your full name"
                     className="w-full bg-bg border border-border rounded-md px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
                   />
                 </Field>
+                <Field label="Studio / Company">
+                  <input
+                    type="text"
+                    placeholder="e.g. CD Projekt Red"
+                    className="w-full bg-bg border border-border rounded-md px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
+                  />
+                </Field>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
                 <Field label="Email" required>
                   <input
                     type="email"
@@ -84,32 +100,29 @@ export default function Contact() {
                     className="w-full bg-bg border border-border rounded-md px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
                   />
                 </Field>
+                <Field label="Service" required>
+                  <select
+                    required
+                    defaultValue=""
+                    className="w-full bg-bg border border-border rounded-md px-4 py-2.5 text-sm text-ink outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
+                  >
+                    <option value="" disabled>Select a service</option>
+                    <option>SOUND — Audio &amp; Voice</option>
+                    <option>L10N — Localization</option>
+                    <option>ECHO — Talent &amp; IP</option>
+                    <option>Multiple / Other</option>
+                  </select>
+                </Field>
               </div>
 
-              <Field label="Project Type" required>
-                <select
-                  required
-                  defaultValue=""
-                  className="w-full bg-bg border border-border rounded-md px-4 py-2.5 text-sm text-ink outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
-                >
-                  <option value="" disabled>
-                    프로젝트 유형 선택
-                  </option>
-                  <option>Sound Design / Music</option>
-                  <option>Localization / Dubbing</option>
-                  <option>Entertainment / IP</option>
-                  <option>Other</option>
-                </select>
-              </Field>
-
-              <Field label="Budget Range">
+              <Field label="Project Stage">
                 <div className="flex flex-wrap gap-2">
-                  {['~ ₩50M', '₩50M – 200M', '₩200M – 1B', '1B+', '미정'].map((b) => (
+                  {['Concept', 'Pre-production', 'Production', 'Post / LQA', 'Live ops'].map((b) => (
                     <label
                       key={b}
                       className="cursor-pointer inline-flex items-center gap-2 rounded-full border border-border bg-bg px-3.5 py-1.5 text-xs text-muted hover:border-accent/50 hover:text-ink has-[:checked]:bg-accent/15 has-[:checked]:border-accent has-[:checked]:text-ink transition-colors"
                     >
-                      <input type="radio" name="budget" className="sr-only" />
+                      <input type="radio" name="stage" className="sr-only" />
                       {b}
                     </label>
                   ))}
@@ -120,14 +133,14 @@ export default function Contact() {
                 <textarea
                   required
                   rows={5}
-                  placeholder="프로젝트에 대해 알려주세요. 일정, 규모, 톤앤매너, 어떤 결을 그리시나요?"
+                  placeholder="장르, 일정, 규모, 톤앤매너 — 어떤 결의 작품인가요?"
                   className="w-full bg-bg border border-border rounded-md px-4 py-3 text-sm text-ink placeholder:text-muted/60 outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all resize-none"
                 />
               </Field>
 
               <div className="mt-7 flex flex-wrap items-center justify-between gap-4">
                 <p className="text-xs text-muted">
-                  제출 시 24시간 이내 회신을 약속드립니다.
+                  Confidential by default. 제출 시 24시간 이내 회신.
                 </p>
                 <button
                   type="submit"
@@ -135,9 +148,7 @@ export default function Contact() {
                   className="group inline-flex items-center gap-2 text-sm font-medium text-bg bg-accent hover:bg-accent-hover px-6 py-2.5 rounded-md transition-colors disabled:bg-accent-soft disabled:text-muted disabled:cursor-not-allowed"
                 >
                   {submitted ? 'Sent · Thank you' : 'Send Inquiry'}
-                  <span aria-hidden className="group-hover:translate-x-0.5 transition-transform">
-                    →
-                  </span>
+                  <span aria-hidden className="group-hover:translate-x-0.5 transition-transform">→</span>
                 </button>
               </div>
             </form>
