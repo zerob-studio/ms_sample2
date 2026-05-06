@@ -3,15 +3,19 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: #0d1117;
-  --color-surface: #161b22;
-  --color-ink: #e6edf3;
-  --color-accent: #4f8ef7;
+  --color-bg: #0a0b0d;
+  --color-surface: #101216;
+  --color-ink: #f2f4f7;
+  --color-accent: #7aa2f7;
 }
 
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -22,7 +26,7 @@ body {
 }
 
 ::selection {
-  background: rgba(79, 142, 247, 0.35);
+  background: rgba(122, 162, 247, 0.28);
   color: var(--color-ink);
 }
 
@@ -33,32 +37,20 @@ body {
 
 .gradient-text {
   background: linear-gradient(
-    120deg,
-    #4f8ef7 0%,
-    #8ab4fa 35%,
-    #c4b5fd 70%,
-    #4f8ef7 100%
+    100deg,
+    #f2f4f7 0%,
+    #c4d2ee 45%,
+    #7aa2f7 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: gradientX 6s ease-in-out infinite;
+  animation: gradientX 10s ease-in-out infinite;
 }
 
-.glow-soft {
-  box-shadow:
-    0 0 0 1px rgba(79, 142, 247, 0.12),
-    0 8px 30px -8px rgba(79, 142, 247, 0.25);
-}
-
-.dot-grid {
-  background-image: radial-gradient(
-    circle at 1px 1px,
-    rgba(139, 149, 165, 0.15) 1px,
-    transparent 0
-  );
-  background-size: 24px 24px;
+.hairline {
+  border-color: rgba(255, 255, 255, 0.06);
 }
 
 .scrollbar-hidden::-webkit-scrollbar {
@@ -68,10 +60,15 @@ body {
   scrollbar-width: none;
 }
 
+/* Editorial section divider — single hairline */
+.section-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
 /* CSS columns for masonry */
 .masonry {
   column-count: 1;
-  column-gap: 1rem;
+  column-gap: 1.25rem;
 }
 @media (min-width: 640px) {
   .masonry {
@@ -85,7 +82,7 @@ body {
 }
 .masonry > * {
   break-inside: avoid;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -95,5 +92,6 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

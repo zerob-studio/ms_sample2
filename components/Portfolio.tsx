@@ -11,8 +11,8 @@ const WORKS = [
     category: 'Sound · Localization',
     tags: ['Sound', 'Localization'],
     year: '2023',
-    palette: ['#1a2440', '#3a5cab'],
-    height: 'h-72',
+    palette: ['#161a26', '#3a5cab'],
+    height: 'h-[28rem]',
     tag: 'Featured',
   },
   {
@@ -21,8 +21,8 @@ const WORKS = [
     category: 'KR Voice Direction',
     tags: ['Voice Direction'],
     year: '2023',
-    palette: ['#1f3a6e', '#4f8ef7'],
-    height: 'h-56',
+    palette: ['#15202e', '#4f8ef7'],
+    height: 'h-72',
   },
   {
     title: 'Red Dead Redemption 2',
@@ -30,8 +30,8 @@ const WORKS = [
     category: 'Localization',
     tags: ['Localization'],
     year: '2018',
-    palette: ['#2c1f56', '#7c5cf0'],
-    height: 'h-80',
+    palette: ['#1a142a', '#7c5cf0'],
+    height: 'h-96',
   },
   {
     title: 'The Witcher 3',
@@ -39,8 +39,8 @@ const WORKS = [
     category: 'Dubbing · Voice Direction',
     tags: ['Voice Direction', 'Localization'],
     year: '2015',
-    palette: ['#0f2a3a', '#3a8ec0'],
-    height: 'h-64',
+    palette: ['#0d2030', '#3a8ec0'],
+    height: 'h-80',
   },
   {
     title: 'League of Legends',
@@ -48,8 +48,8 @@ const WORKS = [
     category: 'Voice & Audio',
     tags: ['Sound', 'Voice Direction'],
     year: 'Ongoing',
-    palette: ['#0d1f2c', '#2d6ec9'],
-    height: 'h-72',
+    palette: ['#0c1923', '#2d6ec9'],
+    height: 'h-[28rem]',
   },
   {
     title: 'Call of Duty: MW',
@@ -57,8 +57,8 @@ const WORKS = [
     category: 'KR Voice & Mixing',
     tags: ['Sound', 'Voice Direction'],
     year: '2019',
-    palette: ['#1d2545', '#5276dd'],
-    height: 'h-60',
+    palette: ['#171b30', '#5276dd'],
+    height: 'h-72',
   },
   {
     title: 'Wuthering Waves',
@@ -66,8 +66,8 @@ const WORKS = [
     category: 'Voice Direction',
     tags: ['Voice Direction'],
     year: '2024',
-    palette: ['#1a2c5e', '#5fa3f7'],
-    height: 'h-56',
+    palette: ['#15213e', '#5fa3f7'],
+    height: 'h-72',
   },
   {
     title: 'Borderlands 4',
@@ -75,8 +75,8 @@ const WORKS = [
     category: 'KR Localization',
     tags: ['Localization'],
     year: '2025',
-    palette: ['#101e30', '#456fc4'],
-    height: 'h-72',
+    palette: ['#0d1622', '#456fc4'],
+    height: 'h-96',
   },
 ];
 
@@ -84,44 +84,42 @@ function WorkCard({ work }: { work: (typeof WORKS)[number] }) {
   const [c1, c2] = work.palette;
   return (
     <article
-      className={`group relative ${work.height} rounded-xl overflow-hidden border border-border hover:border-accent/40 transition-colors duration-500 cursor-pointer`}
+      className={`group relative ${work.height} rounded-xl overflow-hidden cursor-pointer`}
     >
       <div
-        className="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
-        style={{ background: `linear-gradient(135deg, ${c1} 0%, ${c2} 100%)` }}
+        className="absolute inset-0 transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+        style={{ background: `linear-gradient(140deg, ${c1} 0%, ${c2} 130%)` }}
       />
       <div
-        className="absolute inset-0 opacity-30 mix-blend-soft-light"
+        className="absolute inset-0 opacity-25 mix-blend-soft-light"
         style={{
           backgroundImage:
-            'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(0,0,0,0.4) 0%, transparent 60%)',
+            'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.45) 0%, transparent 55%), radial-gradient(circle at 70% 75%, rgba(0,0,0,0.5) 0%, transparent 60%)',
         }}
       />
-      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-bg/95 via-bg/30 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-bg/95 via-bg/40 to-transparent" />
 
       {work.tag && (
-        <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-accent/15 backdrop-blur-md border border-accent/30 px-2.5 py-1 text-[10px] font-en font-medium text-accent uppercase tracking-wider">
+        <span className="absolute top-4 left-4 inline-flex items-center gap-1.5 text-[10px] font-en font-medium text-ink/95 uppercase tracking-[0.18em]">
           <span className="h-1 w-1 rounded-full bg-accent" /> {work.tag}
         </span>
       )}
 
-      <div className="absolute inset-x-0 bottom-0 p-5">
-        <div className="flex items-center gap-2 text-[11px] uppercase tracking-wider text-accent mb-2">
+      <div className="absolute inset-x-0 bottom-0 p-6 lg:p-7">
+        <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-muted mb-3">
           <span>{work.category}</span>
-          <span className="text-muted">·</span>
-          <span className="text-muted font-en">{work.year}</span>
+          <span className="text-subtle">·</span>
+          <span className="font-en">{work.year}</span>
         </div>
-        <h3 className="font-en font-semibold text-xl text-ink tracking-tight">
+        <h3 className="font-en font-medium text-2xl text-ink tracking-tight leading-tight">
           {work.title}
         </h3>
-        <p className="mt-1 text-xs text-muted/80 font-en">{work.publisher}</p>
-        <div className="mt-3 inline-flex items-center gap-1.5 text-xs text-muted group-hover:text-ink transition-colors">
+        <p className="mt-1.5 text-xs text-muted/90 font-en">{work.publisher}</p>
+        <div className="mt-5 inline-flex items-center gap-1.5 text-xs text-muted group-hover:text-ink transition-colors">
           View case study
           <span className="group-hover:translate-x-0.5 transition-transform">→</span>
         </div>
       </div>
-
-      <div className="absolute inset-0 ring-1 ring-inset ring-transparent group-hover:ring-accent/20 transition-colors duration-500 rounded-xl pointer-events-none" />
     </article>
   );
 }
@@ -132,39 +130,43 @@ export default function Portfolio() {
     filter === 'All' ? WORKS : WORKS.filter((w) => w.tags.includes(filter));
 
   return (
-    <section id="works" className="relative py-24 lg:py-32 border-t border-border">
+    <section id="works" className="relative py-28 lg:py-40 section-divider">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <div className="mb-12 lg:mb-16 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
           <div>
-            <span className="text-xs uppercase tracking-[0.2em] text-accent">
+            <div className="text-[10px] uppercase tracking-[0.28em] text-subtle mb-4">
               Selected Works — 04
-            </span>
-            <h2 className="mt-3 font-en font-semibold text-4xl lg:text-5xl tracking-[-0.03em] text-ink leading-[1.05]">
-              Work that shipped globally.
+            </div>
+            <h2 className="font-en font-medium text-4xl lg:text-6xl tracking-tightest text-ink leading-[1.02]">
+              Work that shipped <span className="text-muted">globally.</span>
             </h2>
-            <p className="mt-3 text-muted max-w-md">
+            <p className="mt-5 text-muted max-w-md text-sm leading-relaxed">
               세계 시장에 출시된 게임과 콘텐츠 — 가장 까다로운 파트너들의 결과물입니다.
             </p>
           </div>
-          <a href="#" className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-ink transition-colors">
+          <a
+            href="#"
+            className="inline-flex items-center gap-1.5 text-sm text-ink/85 hover:text-ink transition-colors"
+          >
             View full portfolio
             <span aria-hidden>→</span>
           </a>
         </div>
 
-        {/* Filter chips */}
-        <div className="mb-8 flex flex-wrap items-center gap-2">
+        {/* Filter — minimal underline tabs */}
+        <div className="mb-10 flex flex-wrap items-center gap-x-7 gap-y-2 border-b border-border pb-3">
           {FILTERS.map((f) => (
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={`text-xs font-medium px-3.5 py-1.5 rounded-full border transition-colors ${
-                filter === f
-                  ? 'border-accent bg-accent/15 text-ink'
-                  : 'border-border bg-surface/60 text-muted hover:text-ink hover:border-accent/40'
+              className={`relative text-[13px] font-medium pb-2 transition-colors ${
+                filter === f ? 'text-ink' : 'text-muted hover:text-ink'
               }`}
             >
               {f}
+              {filter === f && (
+                <span className="absolute -bottom-[13px] left-0 right-0 h-px bg-ink" />
+              )}
             </button>
           ))}
         </div>

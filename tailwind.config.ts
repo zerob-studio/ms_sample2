@@ -8,43 +8,42 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg: '#0d1117',
-        surface: '#161b22',
-        surface2: '#1c232c',
-        border: '#262e38',
-        ink: '#e6edf3',
-        muted: '#8b95a5',
+        bg: '#0a0b0d',
+        surface: '#101216',
+        surface2: '#15181d',
+        border: '#1c2026',
+        hairline: '#23272f',
+        ink: '#f2f4f7',
+        muted: '#7c8593',
+        subtle: '#5a6370',
         accent: {
-          DEFAULT: '#4f8ef7',
-          hover: '#6ba0fa',
-          soft: '#1f3a6e',
+          DEFAULT: '#7aa2f7',
+          hover: '#9bb9fa',
+          soft: 'rgba(122,162,247,0.12)',
         },
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],
         kr: ['var(--font-noto-sans-kr)', 'sans-serif'],
       },
+      letterSpacing: {
+        tightest: '-0.045em',
+      },
       animation: {
-        'fade-up': 'fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both',
-        'fade-in': 'fadeIn 0.8s ease-out both',
-        'slide-in-left': 'slideInLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) both',
+        'fade-up': 'fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) both',
+        'fade-in': 'fadeIn 1s ease-out both',
         'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
-        'gradient-x': 'gradientX 6s ease-in-out infinite',
-        'marquee': 'marquee 28s linear infinite',
-        'float': 'float 6s ease-in-out infinite',
+        'gradient-x': 'gradientX 8s ease-in-out infinite',
+        'marquee': 'marquee 40s linear infinite',
       },
       keyframes: {
         fadeUp: {
-          '0%': { opacity: '0', transform: 'translateY(16px)' },
+          '0%': { opacity: '0', transform: 'translateY(14px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
-        },
-        slideInLeft: {
-          '0%': { opacity: '0', transform: 'translateX(-24px)' },
-          '100%': { opacity: '1', transform: 'translateX(0)' },
         },
         pulseSoft: {
           '0%, 100%': { opacity: '0.4' },
@@ -57,10 +56,6 @@ const config: Config = {
         marquee: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-8px)' },
         },
       },
     },

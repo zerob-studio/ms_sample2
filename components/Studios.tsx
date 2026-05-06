@@ -28,67 +28,69 @@ const STUDIOS = [
 
 export default function Studios() {
   return (
-    <section id="studios" className="relative py-24 lg:py-32 border-t border-border">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mb-12 grid grid-cols-1 lg:grid-cols-12 gap-6">
-          <div className="lg:col-span-7">
-            <span className="text-xs uppercase tracking-[0.2em] text-accent">
+    <section id="studios" className="relative py-28 lg:py-40 section-divider">
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        <div className="mb-16 lg:mb-20 grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className="lg:col-span-8">
+            <div className="text-[10px] uppercase tracking-[0.28em] text-subtle mb-4">
               Studios — 06
-            </span>
-            <h2 className="mt-3 font-en font-semibold text-4xl lg:text-5xl tracking-[-0.03em] text-ink leading-[1.05]">
-              Two cities. <span className="gradient-text">One studio.</span>
+            </div>
+            <h2 className="font-en font-medium text-4xl lg:text-6xl tracking-tightest text-ink leading-[1.02]">
+              Two cities.{' '}
+              <span className="text-muted">One studio.</span>
             </h2>
           </div>
-          <div className="lg:col-span-5 lg:pt-3">
-            <p className="text-muted">
+          <div className="lg:col-span-4 lg:pt-3 lg:self-end">
+            <p className="text-muted text-sm leading-relaxed">
               Seoul과 Berlin 두 거점에서 24시간 협업이 가능한 글로벌 파이프라인을 운영합니다.
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2">
           {STUDIOS.map((studio, idx) => (
             <article
               key={studio.city}
-              className="group relative rounded-2xl border border-border bg-surface/70 p-7 lg:p-8 hover:border-accent/40 hover:bg-surface transition-all duration-500 overflow-hidden"
+              className={`relative py-10 lg:py-12 ${
+                idx === 0 ? 'border-t border-border md:pr-10' : 'border-t border-border md:border-l md:pl-10'
+              }`}
             >
-              <div className="absolute -top-12 -right-12 w-44 h-44 rounded-full bg-accent/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="flex items-center justify-between mb-10">
+                <span className="text-[11px] font-en text-subtle tracking-[0.2em]">
+                  0{idx + 1} · {studio.role}
+                </span>
+                <span className="text-[11px] font-en text-muted tabular-nums">
+                  {studio.timezone}
+                </span>
+              </div>
 
-              <div className="relative">
-                <div className="flex items-center justify-between mb-7">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-border bg-bg/60 px-3 py-1 text-xs font-en text-muted">
-                    <span className="text-accent">0{idx + 1}</span>
-                    <span>·</span>
-                    <span>{studio.role}</span>
+              <h3 className="font-en font-medium text-5xl lg:text-6xl text-ink tracking-tightest leading-none">
+                {studio.city}
+              </h3>
+              <p className="mt-3 text-[13px] text-muted">{studio.krCity}</p>
+
+              <div className="mt-10 pt-8 border-t border-border space-y-5 text-sm">
+                <div>
+                  <div className="text-[10px] uppercase tracking-[0.22em] text-subtle mb-2">
+                    Address
                   </div>
-                  <span className="text-xs font-en text-muted">{studio.timezone}</span>
+                  <div className="text-ink/90">{studio.address}</div>
+                  <div className="text-xs text-muted mt-1">
+                    {studio.krAddress}
+                  </div>
                 </div>
 
-                <h3 className="font-en font-semibold text-5xl text-ink tracking-[-0.03em]">
-                  {studio.city}
-                </h3>
-                <p className="mt-1 text-sm text-accent/90">{studio.krCity}</p>
-
-                <div className="mt-7 pt-6 border-t border-border space-y-4 text-sm">
-                  <div>
-                    <div className="text-xs uppercase tracking-wider text-muted mb-1">
-                      Address
-                    </div>
-                    <div className="text-ink">{studio.address}</div>
-                    <div className="text-xs text-muted/70 mt-0.5">
-                      {studio.krAddress}
-                    </div>
+                {studio.contacts.map((c) => (
+                  <div
+                    key={c.label}
+                    className="flex items-baseline justify-between gap-4 pt-3 border-t border-border/60"
+                  >
+                    <span className="text-[10px] uppercase tracking-[0.22em] text-subtle">
+                      {c.label}
+                    </span>
+                    <span className="font-en text-ink/90 text-sm">{c.value}</span>
                   </div>
-
-                  {studio.contacts.map((c) => (
-                    <div key={c.label} className="flex items-baseline justify-between gap-4">
-                      <span className="text-xs uppercase tracking-wider text-muted">
-                        {c.label}
-                      </span>
-                      <span className="font-en text-ink/90">{c.value}</span>
-                    </div>
-                  ))}
-                </div>
+                ))}
               </div>
             </article>
           ))}

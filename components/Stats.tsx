@@ -9,7 +9,7 @@ const STATS = [
   { value: 2000, suffix: '+', label: 'Projects', kr: '완료 프로젝트' },
 ];
 
-function useCountUp(target: number, isVisible: boolean, durationMs = 1800) {
+function useCountUp(target: number, isVisible: boolean, durationMs = 2000) {
   const [value, setValue] = useState(0);
   useEffect(() => {
     if (!isVisible) return;
@@ -28,22 +28,35 @@ function useCountUp(target: number, isVisible: boolean, durationMs = 1800) {
   return value;
 }
 
-function StatCard({ stat, idx, visible }: { stat: (typeof STATS)[number]; idx: number; visible: boolean }) {
+function StatCell({
+  stat,
+  idx,
+  visible,
+}: {
+  stat: (typeof STATS)[number];
+  idx: number;
+  visible: boolean;
+}) {
   const count = useCountUp(stat.value, visible);
   const formatted = count >= 1000 ? count.toLocaleString() : String(count);
   return (
-    <div className="group relative rounded-xl border border-border bg-surface/60 backdrop-blur p-7 hover:border-accent/40 hover:bg-surface transition-all duration-500">
-      <div className="flex items-center justify-between mb-6">
-        <span className="text-xs text-muted font-en">0{idx + 1}</span>
-        <span className="h-1.5 w-1.5 rounded-full bg-accent group-hover:scale-150 transition-transform" />
+    <div
+      className={`relative py-10 lg:py-12 ${
+        idx > 0 ? 'border-t lg:border-t-0 lg:border-l border-border lg:pl-10' : ''
+      }`}
+    >
+      <div className="text-[11px] font-en text-subtle tracking-[0.2em] mb-6">
+        0{idx + 1}
       </div>
-      <div className="font-en font-semibold tracking-tight text-5xl lg:text-6xl text-ink tabular-nums">
+      <div className="font-en font-medium tracking-tightest text-6xl lg:text-7xl text-ink tabular-nums leading-none">
         {formatted}
-        <span className="text-accent">{stat.suffix}</span>
+        <span className="text-accent/80">{stat.suffix}</span>
       </div>
-      <div className="mt-4 flex items-baseline justify-between">
-        <span className="text-sm font-en font-medium text-ink/80">{stat.label}</span>
-        <span className="text-xs text-muted">{stat.kr}</span>
+      <div className="mt-6 flex items-baseline justify-between">
+        <span className="text-[13px] font-en font-medium text-ink/85">
+          {stat.label}
+        </span>
+        <span className="text-[11px] text-muted">{stat.kr}</span>
       </div>
     </div>
   );
@@ -71,27 +84,32 @@ export default function Stats() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-24 lg:py-32 border-t border-border">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mb-12 grid grid-cols-1 lg:grid-cols-12 gap-6">
-          <div className="lg:col-span-7">
-            <span className="text-xs uppercase tracking-[0.2em] text-accent">
+    <section
+      ref={sectionRef}
+      className="relative py-28 lg:py-40 section-divider"
+    >
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        <div className="mb-16 lg:mb-20 grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className="lg:col-span-8">
+            <div className="text-[10px] uppercase tracking-[0.28em] text-subtle mb-4">
               Numbers — 03
-            </span>
-            <h2 className="mt-3 font-en font-semibold text-4xl lg:text-5xl tracking-[-0.03em] text-ink leading-[1.05]">
-              Three decades, one <span className="gradient-text">discipline</span>.
+            </div>
+            <h2 className="font-en font-medium text-4xl lg:text-6xl tracking-tightest text-ink leading-[1.02]">
+              Three decades,{' '}
+              <span className="text-muted">one discipline.</span>
             </h2>
           </div>
-          <div className="lg:col-span-5 lg:pt-3">
-            <p className="text-muted">
+          <div className="lg:col-span-4 lg:pt-3 lg:self-end">
+            <p className="text-muted text-sm leading-relaxed">
               우리가 쌓아온 시간은 결국 작품의 결로 돌아갑니다. 숫자는 단지 결과의 한 면입니다.
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Editorial inline grid, no cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-border">
           {STATS.map((stat, idx) => (
-            <StatCard key={stat.label} stat={stat} idx={idx} visible={visible} />
+            <StatCell key={stat.label} stat={stat} idx={idx} visible={visible} />
           ))}
         </div>
       </div>

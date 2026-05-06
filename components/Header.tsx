@@ -18,7 +18,7 @@ export default function Header() {
   const [langOpen, setLangOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -26,55 +26,47 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-bg/85 backdrop-blur-xl border-b border-border'
+          ? 'bg-bg/80 backdrop-blur-xl border-b border-border'
           : 'bg-transparent'
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 group">
-          <span className="relative inline-flex h-7 w-7 items-center justify-center rounded-md bg-accent/15 ring-1 ring-accent/30 group-hover:bg-accent/25 transition-colors">
-            <span className="absolute inset-0 rounded-md bg-accent/20 blur-md group-hover:bg-accent/40 transition-colors" />
-            <span className="relative font-en font-bold text-accent text-sm">M</span>
+        <a href="#" className="flex items-center gap-2.5 group">
+          <span className="font-en font-medium text-ink tracking-tight">
+            musai<span className="text-muted/80">studio</span>
           </span>
-          <span className="font-en font-semibold text-ink tracking-tight">
-            musai<span className="text-muted">.studio</span>
-          </span>
-          <span className="hidden md:inline-block ml-2 text-[10px] uppercase tracking-[0.18em] text-muted/70">
+          <span className="hidden md:inline-block ml-1 text-[10px] uppercase tracking-[0.22em] text-subtle">
             Est. 1995
           </span>
         </a>
 
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden md:flex items-center gap-7">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.label}
               href={item.href}
-              className="text-sm text-muted hover:text-ink hover:bg-surface px-3.5 py-1.5 rounded-md transition-colors"
+              className="text-[13px] text-muted hover:text-ink transition-colors duration-300"
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           {/* Language */}
           <div className="relative hidden md:block">
             <button
               onClick={() => setLangOpen((o) => !o)}
               onBlur={() => setTimeout(() => setLangOpen(false), 150)}
-              className="inline-flex items-center gap-1.5 text-xs font-medium text-muted hover:text-ink hover:bg-surface px-2.5 py-1.5 rounded-md transition-colors"
+              className="inline-flex items-center gap-1.5 text-[12px] font-medium text-muted hover:text-ink px-2.5 py-1.5 rounded-full transition-colors"
             >
-              <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <circle cx="8" cy="8" r="6" />
-                <path d="M2 8h12M8 2c2 2 3 4 3 6s-1 4-3 6c-2-2-3-4-3-6s1-4 3-6z" />
-              </svg>
               {lang}
-              <span className="text-muted/60">▾</span>
+              <span className="text-subtle text-[10px]">▾</span>
             </button>
             {langOpen && (
-              <div className="absolute right-0 mt-1.5 w-24 rounded-md border border-border bg-surface shadow-xl py-1 z-50">
+              <div className="absolute right-0 mt-2 w-24 rounded-lg border border-border bg-surface/95 backdrop-blur-xl shadow-2xl py-1 z-50">
                 {LANGS.map((l) => (
                   <button
                     key={l}
@@ -82,10 +74,10 @@ export default function Header() {
                       setLang(l);
                       setLangOpen(false);
                     }}
-                    className={`block w-full text-left px-3 py-1.5 text-xs ${
+                    className={`block w-full text-left px-3 py-1.5 text-xs transition-colors ${
                       lang === l
-                        ? 'text-accent bg-accent/10'
-                        : 'text-muted hover:text-ink hover:bg-bg'
+                        ? 'text-ink'
+                        : 'text-muted hover:text-ink'
                     }`}
                   >
                     {l}
@@ -97,7 +89,7 @@ export default function Header() {
 
           <a
             href="#contact"
-            className="hidden md:inline-flex items-center gap-1.5 text-sm font-medium text-bg bg-ink hover:bg-ink/90 px-4 py-2 rounded-md transition-colors"
+            className="hidden md:inline-flex items-center gap-1.5 text-[13px] font-medium text-bg bg-ink hover:bg-ink/90 px-4 py-1.5 rounded-full transition-colors ml-2"
           >
             Get in touch
             <span aria-hidden>→</span>
