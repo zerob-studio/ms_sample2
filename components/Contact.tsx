@@ -75,86 +75,99 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right: form — flat, no card chrome */}
+          {/* Right: form — clear field areas, soft surface */}
           <div className="lg:col-span-7">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
                 setSubmitted(true);
               }}
-              className="lg:pt-2"
+              className="rounded-2xl border border-border bg-surface/40 backdrop-blur-sm p-6 sm:p-8 lg:p-10"
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <Field label="Name" required>
                   <input
                     type="text"
                     required
                     placeholder="Your full name"
-                    className="w-full bg-transparent border-b border-border px-0 py-3 text-sm text-ink placeholder:text-subtle outline-none focus:border-ink transition-colors"
+                    className="form-input"
                   />
                 </Field>
                 <Field label="Studio / Company">
                   <input
                     type="text"
                     placeholder="e.g. CD Projekt Red"
-                    className="w-full bg-transparent border-b border-border px-0 py-3 text-sm text-ink placeholder:text-subtle outline-none focus:border-ink transition-colors"
+                    className="form-input"
                   />
                 </Field>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
                 <Field label="Email" required>
                   <input
                     type="email"
                     required
                     placeholder="you@example.com"
-                    className="w-full bg-transparent border-b border-border px-0 py-3 text-sm text-ink placeholder:text-subtle outline-none focus:border-ink transition-colors"
+                    className="form-input"
                   />
                 </Field>
                 <Field label="Service" required>
-                  <select
-                    required
-                    defaultValue=""
-                    className="w-full bg-transparent border-b border-border px-0 py-3 text-sm text-ink outline-none focus:border-ink transition-colors appearance-none cursor-pointer"
-                  >
-                    <option value="" disabled className="bg-bg">
-                      Select a service
-                    </option>
-                    <option className="bg-bg">SOUND — Audio &amp; Voice</option>
-                    <option className="bg-bg">L10N — Localization</option>
-                    <option className="bg-bg">ECHO — Talent &amp; IP</option>
-                    <option className="bg-bg">Multiple / Other</option>
-                  </select>
+                  <div className="relative">
+                    <select
+                      required
+                      defaultValue=""
+                      className="form-input appearance-none pr-9 cursor-pointer"
+                    >
+                      <option value="" disabled className="bg-bg">
+                        Select a service
+                      </option>
+                      <option className="bg-bg">SOUND — Audio &amp; Voice</option>
+                      <option className="bg-bg">L10N — Localization</option>
+                      <option className="bg-bg">ECHO — Talent &amp; IP</option>
+                      <option className="bg-bg">Multiple / Other</option>
+                    </select>
+                    <span className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-muted text-xs">
+                      ▾
+                    </span>
+                  </div>
                 </Field>
               </div>
 
-              <Field label="Project Stage">
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {['Concept', 'Pre-production', 'Production', 'Post / LQA', 'Live ops'].map(
-                    (b) => (
-                      <label
-                        key={b}
-                        className="cursor-pointer inline-flex items-center gap-2 rounded-full border border-border px-3.5 py-1.5 text-xs text-muted hover:border-ink/50 hover:text-ink has-[:checked]:bg-ink has-[:checked]:border-ink has-[:checked]:text-bg transition-colors"
-                      >
-                        <input type="radio" name="stage" className="sr-only" />
-                        {b}
-                      </label>
-                    ),
-                  )}
-                </div>
-              </Field>
+              <div className="mt-5">
+                <Field label="Project Stage">
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {['Concept', 'Pre-production', 'Production', 'Post / LQA', 'Live ops'].map(
+                      (b) => (
+                        <label
+                          key={b}
+                          className="cursor-pointer inline-flex items-center gap-2 rounded-full border border-border bg-bg/60 px-3.5 py-2 text-xs text-muted hover:border-ink/40 hover:text-ink has-[:checked]:bg-ink has-[:checked]:border-ink has-[:checked]:text-bg transition-colors"
+                        >
+                          <input type="radio" name="stage" className="sr-only" />
+                          {b}
+                        </label>
+                      ),
+                    )}
+                  </div>
+                </Field>
+              </div>
 
-              <Field label="Project Brief" required>
-                <textarea
-                  required
-                  rows={4}
-                  placeholder="장르, 일정, 규모, 톤앤매너 — 어떤 결의 작품인가요?"
-                  className="w-full bg-transparent border-b border-border px-0 py-3 text-sm text-ink placeholder:text-subtle outline-none focus:border-ink transition-colors resize-none"
-                />
-              </Field>
+              <div className="mt-5">
+                <Field label="Project Brief" required>
+                  <textarea
+                    required
+                    rows={5}
+                    placeholder="장르, 일정, 규모, 톤앤매너 — 어떤 결의 작품인가요?"
+                    className="form-input resize-none"
+                  />
+                </Field>
+              </div>
 
-              <div className="mt-12 flex flex-wrap items-center justify-between gap-4">
-                <p className="text-xs text-muted">
+              <div className="mt-8 pt-6 border-t border-border flex flex-wrap items-center justify-between gap-4">
+                <p className="text-xs text-muted flex items-center gap-2">
+                  <svg viewBox="0 0 16 16" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <rect x="3" y="7" width="10" height="7" rx="1" />
+                    <path d="M5 7V5a3 3 0 016 0v2" />
+                  </svg>
                   Confidential by default. 제출 시 24시간 이내 회신.
                 </p>
                 <button
@@ -186,7 +199,7 @@ function Field({
   children: React.ReactNode;
 }) {
   return (
-    <label className="block mb-8">
+    <label className="block">
       <span className="block text-[10px] uppercase tracking-[0.22em] text-subtle mb-2">
         {label}
         {required && <span className="text-accent ml-1">*</span>}

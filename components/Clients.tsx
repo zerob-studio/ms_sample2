@@ -1,6 +1,11 @@
+'use client';
+
+import { useState } from 'react';
+
 type LogoStyle = 'serif' | 'mono' | 'wide' | 'condensed' | 'italic' | 'uppercase';
 
 type Client = {
+  slug: string; // matches /public/logos/<slug>.svg
   name: string;
   display?: string;
   style: LogoStyle;
@@ -8,22 +13,22 @@ type Client = {
 };
 
 const CLIENTS: Client[] = [
-  { name: 'CD PROJEKT RED', display: 'CD PROJEKT', style: 'condensed', weight: 'bold' },
-  { name: 'LARIAN STUDIOS', display: 'Larian', style: 'serif', weight: 'normal' },
-  { name: 'ROCKSTAR GAMES', display: 'ROCKSTAR', style: 'wide', weight: 'bold' },
-  { name: 'RIOT GAMES', display: 'RIOT', style: 'uppercase', weight: 'bold' },
-  { name: 'ELECTRONIC ARTS', display: 'EA', style: 'mono', weight: 'bold' },
-  { name: 'SONY INTERACTIVE', display: 'SONY', style: 'wide', weight: 'medium' },
-  { name: 'TENCENT', display: 'Tencent', style: 'mono', weight: 'medium' },
-  { name: 'KURO GAMES', display: 'KURO', style: 'condensed', weight: 'bold' },
-  { name: 'PEARL ABYSS', display: 'PEARL ABYSS', style: 'wide', weight: 'light' },
-  { name: 'TAKE-TWO', display: 'Take-Two', style: 'serif', weight: 'normal' },
-  { name: 'HYPERGRYPH', display: 'Hypergryph', style: 'italic', weight: 'medium' },
-  { name: 'ACTIVISION', display: 'ACTIVISION', style: 'condensed', weight: 'bold' },
-  { name: 'SEGA', display: 'SEGA', style: 'wide', weight: 'bold' },
-  { name: 'KONAMI', display: 'KONAMI', style: 'wide', weight: 'medium' },
-  { name: 'BYTEDANCE', display: 'ByteDance', style: 'mono', weight: 'medium' },
-  { name: 'SMILEGATE', display: 'SMILEGATE', style: 'condensed', weight: 'medium' },
+  { slug: 'cdpr', name: 'CD PROJEKT RED', display: 'CD PROJEKT', style: 'condensed', weight: 'bold' },
+  { slug: 'larian', name: 'LARIAN STUDIOS', display: 'Larian', style: 'serif', weight: 'normal' },
+  { slug: 'rockstar', name: 'ROCKSTAR GAMES', display: 'ROCKSTAR', style: 'wide', weight: 'bold' },
+  { slug: 'riot', name: 'RIOT GAMES', display: 'RIOT', style: 'uppercase', weight: 'bold' },
+  { slug: 'ea', name: 'ELECTRONIC ARTS', display: 'EA', style: 'mono', weight: 'bold' },
+  { slug: 'sony', name: 'SONY INTERACTIVE', display: 'SONY', style: 'wide', weight: 'medium' },
+  { slug: 'tencent', name: 'TENCENT', display: 'Tencent', style: 'mono', weight: 'medium' },
+  { slug: 'kuro', name: 'KURO GAMES', display: 'KURO', style: 'condensed', weight: 'bold' },
+  { slug: 'pearl-abyss', name: 'PEARL ABYSS', display: 'PEARL ABYSS', style: 'wide', weight: 'light' },
+  { slug: 'take-two', name: 'TAKE-TWO', display: 'Take-Two', style: 'serif', weight: 'normal' },
+  { slug: 'hypergryph', name: 'HYPERGRYPH', display: 'Hypergryph', style: 'italic', weight: 'medium' },
+  { slug: 'activision', name: 'ACTIVISION', display: 'ACTIVISION', style: 'condensed', weight: 'bold' },
+  { slug: 'sega', name: 'SEGA', display: 'SEGA', style: 'wide', weight: 'bold' },
+  { slug: 'konami', name: 'KONAMI', display: 'KONAMI', style: 'wide', weight: 'medium' },
+  { slug: 'bytedance', name: 'BYTEDANCE', display: 'ByteDance', style: 'mono', weight: 'medium' },
+  { slug: 'smilegate', name: 'SMILEGATE', display: 'SMILEGATE', style: 'condensed', weight: 'medium' },
 ];
 
 const styleClass: Record<LogoStyle, string> = {
@@ -44,14 +49,41 @@ const weightClass: Record<NonNullable<Client['weight']>, string> = {
 };
 
 function LogoMark({ client }: { client: Client }) {
+  const [errored, setErrored] = useState(false);
   const cls = `${styleClass[client.style]} ${weightClass[client.weight ?? 'medium']}`;
+
   return (
     <div className="group relative aspect-[5/2] flex items-center justify-center px-4 py-6 border border-border hover:bg-surface/40 hover:border-hairline transition-colors duration-500">
-      <span
-        className={`${cls} text-ink/60 group-hover:text-ink transition-colors duration-500 text-base sm:text-lg lg:text-xl text-center leading-none whitespace-nowrap`}
-      >
-        {client.display ?? client.name}
-      </span>
+      {!errored ? (
+        // Try to load real logo from /public/logos/<slug>.(svg|png)
+        // Falls back to wordmark below on error.
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={`/logos/${client.slug}.svg`}
+          alt={client.name}
+          onError={(e) => {
+            // try .png if .svg missing
+            const img = e.currentTarget;
+            if (img.dataset.fallback !== 'png') {
+              img.dataset.fallback = 'png';
+              img.src = `/logos/${client.slug}.png`;
+            } else {
+              setErrored(true);
+            }
+          }}
+          className="max-h-7 sm:max-h-8 lg:max-h-9 max-w-[80%] object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-500 select-none"
+          style={{
+            filter: 'grayscale(1) brightness(1.1)',
+          }}
+          loading="lazy"
+        />
+      ) : (
+        <span
+          className={`${cls} text-ink/55 group-hover:text-ink transition-colors duration-500 text-base sm:text-lg lg:text-xl text-center leading-none whitespace-nowrap`}
+        >
+          {client.display ?? client.name}
+        </span>
+      )}
     </div>
   );
 }
@@ -82,7 +114,7 @@ export default function Clients() {
         {/* Logo grid — borders form a clean matrix */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 -mx-px">
           {CLIENTS.map((c) => (
-            <LogoMark key={c.name} client={c} />
+            <LogoMark key={c.slug} client={c} />
           ))}
         </div>
 
